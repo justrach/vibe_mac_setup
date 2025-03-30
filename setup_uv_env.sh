@@ -13,18 +13,11 @@ VENV_PATH="$VENV_DIR/base"
 if ! command_exists brew; then
     echo "Homebrew is not installed. Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    
-    # Prompt for Xcode installation
-    echo "Homebrew requires Xcode Command Line Tools to be installed."
-    echo "Would you like to install Xcode Command Line Tools now? (y/n)"
-    read -r response
-    if [[ "$response" =~ ^[Yy]$ ]]; then
-        xcode-select --install
-    else
-        echo "Please install Xcode Command Line Tools manually and run this script again."
-        exit 1
-    fi
 fi
+
+# Install Xcode Command Line Tools
+echo "Installing Xcode Command Line Tools..."
+xcode-select --install
 
 # Install build dependencies
 echo "Installing build dependencies..."
